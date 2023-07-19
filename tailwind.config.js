@@ -4,6 +4,11 @@ module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {},
+
+    fontFamily: {
+      "space-mono": ["Space Mono", "monospace"],
+    },
+
     colors: {
       "White-Lavender": "#F6F8FF",
       "Pure-White": "#FEFEFE",
