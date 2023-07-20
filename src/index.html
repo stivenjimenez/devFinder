@@ -14,7 +14,7 @@
   </head>
   <body class="w-screen h-screen bg-White-Lavender font-space-mono">
     <main class="p-6">
-      <header class="flex justify-between">
+      <header class="flex justify-between mb-9">
         <h1 class="text-2xl font-bold">divfinder</h1>
         <button class="flex items-center text-Steel-Blue">
           Dark
@@ -32,6 +32,41 @@
           </svg>
         </button>
       </header>
+
+      <!-- search -->
+      <div class="relative">
+        <div
+          class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="21"
+            height="20"
+            fill="none"
+          >
+            <path
+              fill="#0079FF"
+              fill-rule="evenodd"
+              d="M8.84 0C3.967 0 0 3.955 0 8.816c0 4.862 3.966 8.817 8.84 8.817a8.816 8.816 0 0 0 5.707-2.088l4.265 4.244a.723.723 0 0 0 1.025-.003.725.725 0 0 0-.002-1.024l-4.26-4.24a8.764 8.764 0 0 0 2.106-5.706c0-4.86-3.966-8.816-8.84-8.816Zm5.272 13.975a7.331 7.331 0 0 0 2.12-5.159c0-4.062-3.316-7.367-7.391-7.367-4.076 0-7.392 3.305-7.392 7.367 0 4.063 3.316 7.367 7.392 7.367a7.38 7.38 0 0 0 5.161-2.098.702.702 0 0 1 .11-.11Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+
+        <input
+          type="search"
+          class="block w-full py-4 pl-11 text-base text-Steel-Blue rounded-2xl shadow-custom focus:outline-0"
+          placeholder="Search GitHub username…"
+          required
+        />
+
+        <button
+          type="submit"
+          class="absolute inset-y-0 right-0 border bg-Sky-Blue text-Pure-White px-4 rounded-xl m-1"
+        >
+          Search
+        </button>
+      </div>
     </main>
     <script src="./index.js"></script>
   </body>
