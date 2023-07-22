@@ -1,3 +1,4 @@
+const inputSearch = document.getElementById("inputSearch");
 const btnSearch = document.getElementById("btnSearch");
 const profileImage = document.getElementById("profileImage");
 const userName = document.getElementById("userName");
@@ -31,7 +32,6 @@ async function getUserAPI(nameUser) {
   try {
     const response = await fetch(`https://api.github.com/users/${nameUser}`);
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
@@ -39,26 +39,43 @@ async function getUserAPI(nameUser) {
   }
 }
 
-btnSearch.addEventListener("click", async () => {
-  const nameUser = document.getElementById("inputSearch").value;
-  const dataUser = await getUserAPI(nameUser);
-
-  profileImage.src = dataUser.avatar_url;
-  userName.innerHTML = dataUser.name;
-  userLogin.innerHTML = `@${dataUser.login}`;
-
-  const date = new Date(dataUser.created_at);
-  const dateFormated = `Joined ${date.getDate()} ${
+function formatJoinedDate(dateString) {
+  const date = new Date(dateString);
+  return `Joined ${date.getDate()} ${
     months[date.getMonth()]
   } ${date.getFullYear()}`;
-  userCreatedAt.innerHTML = dateFormated;
+}
 
-  userBio.innerHTML = dataUser.bio;
-  publicRepos.innerHTML = dataUser.public_repos;
-  followers.innerHTML = dataUser.followers;
-  following.innerHTML = dataUser.following;
-  userLocation.innerHTML = dataUser.location || " ";
-  userBlog.innerHTML = dataUser.blog || " ";
-  userTwitter.innerHTML = `@${dataUser.twitter_username}` || " ";
-  userCompany.innerHTML = dataUser.company || " ";
+function updateProfileInfo(dataUser) {
+  profileImage.src = dataUser.avatar_url;
+  userName.textContent = dataUser.name;
+  userLogin.textContent = `@${dataUser.login}`;
+  userCreatedAt.textContent = formatJoinedDate(dataUser.created_at);
+  userBio.textContent = dataUser.bio || "";
+  publicRepos.textContent = dataUser.public_repos;
+  followers.textContent = dataUser.followers;
+  following.textContent = dataUser.following;
+  userLocation.textContent = dataUser.location || " ";
+  userBlog.textContent = dataUser.blog || " ";
+  userTwitter.textContent = `@${dataUser.twitter_username}` || " ";
+  userCompany.textContent = dataUser.company || " ";
+}
+
+async function searchUser() {
+  const dataUser = await getUserAPI(inputSearch.value);
+
+  if (dataUser.message === "Not Found") {
+    // Manejo de error si no se encuentra el usuario
+    return;
+  }
+
+  updateProfileInfo(dataUser);
+}
+
+inputSearch.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    searchUser();
+  }
 });
+
+btnSearch.addEventListener("click", searchUser);
