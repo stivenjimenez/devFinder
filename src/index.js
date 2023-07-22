@@ -1,4 +1,5 @@
 const inputSearch = document.getElementById("inputSearch");
+const messageError = document.getElementById("messageError");
 const btnSearch = document.getElementById("btnSearch");
 const profileImage = document.getElementById("profileImage");
 const userName = document.getElementById("userName");
@@ -65,9 +66,11 @@ async function searchUser() {
   const dataUser = await getUserAPI(inputSearch.value);
 
   if (dataUser.message === "Not Found") {
-    // Manejo de error si no se encuentra el usuario
+    messageError.classList.remove("hidden");
     return;
   }
+
+  messageError.classList.add("hidden");
 
   updateProfileInfo(dataUser);
 }
