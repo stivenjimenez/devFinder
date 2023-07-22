@@ -56,10 +56,11 @@ function updateProfileInfo(dataUser) {
   publicRepos.textContent = dataUser.public_repos;
   followers.textContent = dataUser.followers;
   following.textContent = dataUser.following;
-  userLocation.textContent = dataUser.location || " ";
-  userBlog.textContent = dataUser.blog || " ";
-  userTwitter.textContent = `@${dataUser.twitter_username}` || " ";
-  userCompany.textContent = dataUser.company || " ";
+  userLocation.textContent = dataUser.location || "Not Available";
+  userBlog.href = dataUser.blog || "#";
+  userBlog.textContent = dataUser.blog || "Not Available";
+  userTwitter.textContent = `@${dataUser.twitter_username}` || "Not Available";
+  userCompany.textContent = dataUser.company || "Not Available";
 }
 
 async function searchUser() {
