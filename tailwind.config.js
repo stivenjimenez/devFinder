@@ -2,6 +2,7 @@
 
 module.exports = {
   content: ["./src/**/*.{html,js}"],
+  darkMode: "class",
   theme: {
     extend: {
       boxShadow: {
@@ -22,6 +23,8 @@ module.exports = {
       "Light-Red": "#F74646",
       "Dark-Blue": "#2B3442",
       "Deep-Black": "#222731",
+      "Slate-Blue": "#1E2A47",
+      "Midnight-Blue": "#141D2F",
     },
   },
   plugins: [],
