@@ -14,6 +14,8 @@ const userLocation = document.getElementById("userLocation");
 const userBlog = document.getElementById("userBlog");
 const userTwitter = document.getElementById("userTwitter");
 const userCompany = document.getElementById("userCompany");
+const loadingSkeleton = document.getElementById("loadingSkeleton");
+const infoProfile = document.getElementById("infoProfile");
 
 const months = [
   "Enero",
@@ -31,9 +33,16 @@ const months = [
 ];
 
 async function getUserAPI(nameUser) {
+  loadingSkeleton.classList.remove("hidden");
+  infoProfile.classList.add("hidden");
+
   try {
     const response = await fetch(`https://api.github.com/users/${nameUser}`);
     const data = await response.json();
+
+    loadingSkeleton.classList.add("hidden");
+    infoProfile.classList.remove("hidden");
+
     return data;
   } catch (error) {
     console.error(error);
